@@ -26,21 +26,21 @@ int main(int ac, char **av, char **env)
 			return (-1);
 		}
 		strcpy(linedup, line);
-		token = strtok(line, "\n");
+		token = strtok(line, " \n");
 		while (token != NULL)
 		{
-			token = strtok(NULL, "\n");
+			token = strtok(NULL, " \n");
 			count++;
 		}
 		count++;
 		av = malloc(sizeof(char *) * count);
-		token1 = strtok(linedup, "\n");
+		token1 = strtok(linedup, " \n");
 		i = 0;
 		while(token1 != NULL)
 		{
 			av[i] = malloc(sizeof(char) * strlen(token1));
 			strcpy(av[i], token1);
-			token1 = strtok(NULL, "\n");
+			token1 = strtok(NULL, " \n");
 			i++;
 		}
 		av[i] = NULL;
