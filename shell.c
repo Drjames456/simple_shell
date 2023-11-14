@@ -6,9 +6,8 @@ int main(int ac, char **av, char **env)
 	char *line = NULL, *linedup = NULL;
 	size_t n = 0;
 	ssize_t get;
-	int i, status, count = 0;
+	int i, count = 0;
 	char *token, *token1;
-	pid_t fkrv;
 	(void) ac;
 
 	while (1)
@@ -44,22 +43,10 @@ int main(int ac, char **av, char **env)
 			i++;
 		}
 		av[i] = NULL;
-		fkrv = fork();
-		if (fkrv == -1)
-		{
-			perror("Error");
-		}
-		if (fkrv == 0)
-		{
-			if (execve(av[0], av, env) == -1)
-			{
-				perror("Error");
-			}
-		}
-		wait(&status);
-		free(line);
-		free(linedup);
-		free(av);
+		exe(&av[0], env);
 	}
+	free(line);
+	free(linedup);
+	free(av);
 	return (0);
 }

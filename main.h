@@ -9,5 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 extern char **environ;
+char *getstat(char *cmd);
+void exe(char **av, char **env);
 
 #endif
