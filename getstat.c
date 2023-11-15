@@ -32,3 +32,4 @@ char *getstat(char *cmd)
 	free(path_cpy);
 	return (NULL);
 }
+
