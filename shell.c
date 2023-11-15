@@ -16,7 +16,7 @@ int main(int ac, char **av, char **env)
 		get = getline(&line, &n, stdin);
 		if (get == -1)
 		{
-			exit (-1);
+			exit (0);
 			return (0);
 		}
 		linedup = malloc(sizeof(char) * get);
