@@ -1,5 +1,9 @@
 #include "main.h"
-
+/**
+ * getstat - A function that adds path and stat a command.
+ * @cmd: A command
+ * Return: A string.
+ */
 
 char *getstat(char *cmd)
 {
@@ -21,7 +25,7 @@ char *getstat(char *cmd)
 		if (stat(filepath, &buf) == 0)
 		{
 			free(path_cpy);
-			return(filepath);
+			return (filepath);
 		}
 		else
 		{
@@ -30,6 +34,9 @@ char *getstat(char *cmd)
 		}
 	}
 	free(path_cpy);
+	if (stat(cmd, &buf) == 0)
+	{
+		return (cmd);
+	}
 	return (NULL);
 }
-

@@ -1,15 +1,22 @@
 #include "main.h"
 
+/**
+ * exe - A function that execute commands
+ * @av: Argument vectors
+ * @env: Environment variables
+ * Return: Nothing.
+ */
+
 void exe(char **av, char **env)
 {
-	char *command;
-	int status, stsrv;
+	char *command, *comm;
+	int status;
 	pid_t fkrv;
-	struct stat buf;
-	
-	stsrv = stat(av[0], &buf);
-	if (stsrv == 0)
+
+	if (av)
 	{
+		command = av[0];
+		comm = getstat(command);
 		fkrv = fork();
 		if (fkrv == -1)
 		{
@@ -17,32 +24,8 @@ void exe(char **av, char **env)
 		}
 		if (fkrv == 0)
 		{
-			if (execve(av[0], av, env) == -1)
-			{
-				perror("Error:");
-			}
+			execve(comm, av, env);
 		}
 		wait(&status);
 	}
-	else
-	{
-		command = getstat(av[0]);
-		if(stat(command, &buf) == 0)
-		{
-			fkrv = fork();
-			if (fkrv == -1)
-			{
-				perror("Error:");
-			}
-			if (fkrv == 0)
-			{
-				if (execve(command, av, env) == -1)
-				{
-					perror("Error:");
-				}
-			}
-			wait(&status);
-		}
-	}
 }
-

@@ -1,5 +1,11 @@
 #include "main.h"
-
+/**
+ * main - The main function
+ * @ac : Argument count.
+ * @av : Argurment vector.
+ * @env: Environment variable.
+ * Return: Always 0.
+ */
 
 int main(int ac, char **av, char **env)
 {
@@ -16,7 +22,7 @@ int main(int ac, char **av, char **env)
 		get = getline(&line, &n, stdin);
 		if (get == -1)
 		{
-			exit (0);
+			exit(0);
 			return (0);
 		}
 		linedup = malloc(sizeof(char) * get);
@@ -35,7 +41,7 @@ int main(int ac, char **av, char **env)
 		av = malloc(sizeof(char *) * count);
 		token1 = strtok(linedup, " \n");
 		i = 0;
-		while(token1 != NULL)
+		while (token1 != NULL)
 		{
 			av[i] = malloc(sizeof(char) * strlen(token1));
 			strcpy(av[i], token1);
@@ -50,4 +56,3 @@ int main(int ac, char **av, char **env)
 	free(av);
 	return (0);
 }
-
