@@ -11,5 +11,9 @@
 extern char **environ;
 char *getstat(char *cmd);
 void exe(char **av, char **env);
+ssize_t get;
+void free_v(char *line1, char *line2, char **av);
+int i, count;
+char *token1, *token2;
 
 #endif

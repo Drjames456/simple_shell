@@ -20,7 +20,7 @@ void exe(char **av, char **env)
 		fkrv = fork();
 		if (fkrv == -1)
 		{
-			perror("Error:");
+			perror("Error");
 		}
 		if (fkrv == 0)
 		{

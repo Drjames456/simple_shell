@@ -38,5 +38,9 @@ char *getstat(char *cmd)
 	{
 		return (cmd);
 	}
+	else
+	{
+		perror("Error");
+	}
 	return (NULL);
 }
