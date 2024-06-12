@@ -9,11 +9,10 @@
 #include <string.h>
 #include <stdlib.h>
 extern char **environ;
-char *getstat(char *cmd);
-void exe(char **av, char **env);
-ssize_t get;
-void free_v(char *line1, char *line2, char **av);
-int i, count;
-char *token1, *token2;
+
+void shell_loop(void);
+char *read_line(void);
+char **parse_line(char *line);
+int execute_command(char **args);
 
 #endif
