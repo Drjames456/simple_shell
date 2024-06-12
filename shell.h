@@ -1,18 +1,16 @@
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef SHELL_H
+#define SHELL_H
 
 #include <stdio.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <sys/stat.h>
-#include <string.h>
 #include <stdlib.h>
-extern char **environ;
+#include <unistd.h>
+#include <string.h>
+#include <errno.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-void shell_loop(void);
-char *read_line(void);
-char **parse_line(char *line);
-int execute_command(char **args);
+#define MAX_COMMAND_LENGTH 100
 
-#endif
+void execute_command(const char *command);
+
+#endif /* SHELL_H */
