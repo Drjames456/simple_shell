@@ -1,30 +1,17 @@
 #include "shell.h"
 /**
- * execute_command - A void function that executes.
- * @command: A command to execute.
- * Return: Nothing.
+ * execute - Executes a shell built-in or launches a program
+ * @args: Null terminated list of arguments
+ *
+ * Return: 1 if the shell should continue running, 0 if it should terminate
  */
-
-void execute_command(const char *command)
+int execute(char **args)
 {
-	char **args = malloc(2 * sizeof(char *));
-	if (args == NULL)
+	if (args == NULL || args[0] == NULL)
 	{
-		perror("malloc");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "hsh: No such file or directory\n");
+		return (1);
 	}
 
-	args[0] = strdup(command);
-	if (args[0] == NULL)
-	{
-		perror("strdup");
-		exit(EXIT_FAILURE);
-	}
-
-	args[1] = NULL;
-
-	execve(command, args, NULL);
-
-	perror("No such file or directory");
-	exit(EXIT_FAILURE);
+	return (launch(args));
 }

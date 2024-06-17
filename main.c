@@ -6,44 +6,27 @@
  * Return: Always 0 (Success)
  */
 
-int main()
+int main(void)
 {
-	char command[MAX_COMMAND_LENGTH];
+	char *line;
+	char **args;
 	int status;
 
-	while (1)
-	{
-		printf("$ ");
-
-		if (fgets(command, MAX_COMMAND_LENGTH, stdin) == NULL)
+	do {
+		printf("#cisfun$ ");
+		line = read_line();
+		if (line == NULL)
 		{
 			printf("\n");
 			break;
 		}
+		args = split_line(line);
+		status = execute(args);
 
-		command[strlen(command) - 1] = 0;
+		free(line);
+		free(args);
+	} while (status);
 
-		if (access(command, X_OK) != -1)
-		{
-			pid_t pid = fork();
-			if (pid == -1)
-			{
-				perror("fork");
-				exit(EXIT_FAILURE);
-			}
-			else if (pid == 0)
-			{
-				execute_command(command);
-			}
-			else 
-			{
-				waitpid(pid, &status, 0);
-			}
-		}
-		else 
-		{
-			fprintf(stderr, "%s: command not found\n", command);
-		}
-	}
-	return 0;
+	return (0);
 }
+
